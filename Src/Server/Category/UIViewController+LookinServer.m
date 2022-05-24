@@ -8,7 +8,9 @@
 
 #import "UIViewController+LookinServer.h"
 #import "UIView+LookinServer.h"
+#import "UIApplication+Lookin.h"
 #import <objc/runtime.h>
+
 
 @implementation UIViewController (LookinServer)
 
@@ -26,8 +28,9 @@
     self.view.lks_hostViewController = self;
 }
 
+
 + (nullable UIViewController *)lks_visibleViewController {
-    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController *rootViewController = [UIApplication lks_sharedApplication].keyWindow.rootViewController;
     UIViewController *visibleViewController = [rootViewController lks_visibleViewControllerIfExist];
     return visibleViewController;
 }

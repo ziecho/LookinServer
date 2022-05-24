@@ -10,6 +10,7 @@
 #import "LKS_ConnectionManager.h"
 #import "LKS_TraceManager.h"
 #import "LKS_LocalInspectViewController.h"
+#import "UIApplication+Lookin.h"
 
 @implementation LKS_LocalInspectContainerWindow
 
@@ -95,7 +96,7 @@
     if (!self.inspectorWindow.hidden) {
         return;
     }
-    self.previousKeyWindow = [UIApplication sharedApplication].keyWindow;
+    self.previousKeyWindow = [UIApplication lks_sharedApplication].keyWindow;
     self.viewController.prevKeyWindow = self.previousKeyWindow;
     [self.inspectorWindow makeKeyAndVisible];
 }
@@ -105,10 +106,10 @@
         return;
     }
     
-    if ([[UIApplication sharedApplication] keyWindow] == self.inspectorWindow) {
+    if ([[UIApplication lks_sharedApplication] keyWindow] == self.inspectorWindow) {
         if (self.previousKeyWindow.hidden) {
             ///TODO 到底该用 keyWindow 还是 delegate.window
-            [[UIApplication sharedApplication].delegate.window makeKeyWindow];
+            [[UIApplication lks_sharedApplication].delegate.window makeKeyWindow];
         } else {
             [self.previousKeyWindow makeKeyWindow];
         }

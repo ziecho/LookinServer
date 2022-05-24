@@ -9,7 +9,7 @@
 #import "LKS_TraceManager.h"
 
 
-
+#import "UIApplication+Lookin.h"
 #import <Objc/runtime.h>
 #import "LookinIvarTrace.h"
 #import "LookinServerDefines.h"
@@ -34,7 +34,7 @@
     // 把旧的先都清理掉
     [NSObject lks_clearAllObjectsTraces];
     
-    [[[UIApplication sharedApplication].windows copy] enumerateObjectsUsingBlock:^(__kindof UIWindow * _Nonnull window, NSUInteger idx, BOOL * _Nonnull stop) {
+    [[UIApplication lks_windows].copy enumerateObjectsUsingBlock:^(__kindof UIWindow * _Nonnull window, NSUInteger idx, BOOL * _Nonnull stop) {
         [self _addTraceForLayersRootedByLayer:window.layer];
     }];  
 }

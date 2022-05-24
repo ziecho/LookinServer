@@ -15,6 +15,7 @@
 #import "LookinHierarchyInfo.h"
 #import "LookinServerDefines.h"
 #import "LKS_PerspectiveToolbarButtons.h"
+#import "UIApplication+Lookin.h"
 
 @interface LKS_PerspectiveLoadingMaskView : UIView
 
@@ -138,7 +139,7 @@
         self.viewController = [[LKS_PerspectiveViewController alloc] initWithHierarchyInfo:info];
         self.contentWindow.rootViewController = self.viewController;
 
-        self.previousKeyWindow = [UIApplication sharedApplication].keyWindow;
+        self.previousKeyWindow = [UIApplication lks_sharedApplication].keyWindow;
         [self.contentWindow makeKeyAndVisible];
 
         [self.viewController.closeButton addTarget:self action:@selector(_exit) forControlEvents:UIControlEventTouchUpInside];
@@ -150,9 +151,9 @@
         return;
     }
     
-    if ([[UIApplication sharedApplication] keyWindow] == self.contentWindow) {
+    if ([[UIApplication lks_sharedApplication] keyWindow] == self.contentWindow) {
         if (self.previousKeyWindow.hidden) {
-            [[UIApplication sharedApplication].delegate.window makeKeyWindow];
+            [[UIApplication lks_sharedApplication].delegate.window makeKeyWindow];
         } else {
             [self.previousKeyWindow makeKeyWindow];
         }

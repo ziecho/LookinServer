@@ -15,13 +15,14 @@
 #import "LKS_AttrGroupsMaker.h"
 #import "LKS_EventHandlerMaker.h"
 #import "LookinServerDefines.h"
+#import "UIApplication+Lookin.h"
 
 @implementation LKS_HierarchyDisplayItemsMaker
 
 + (NSArray<LookinDisplayItem *> *)itemsWithScreenshots:(BOOL)hasScreenshots attrList:(BOOL)hasAttrList lowImageQuality:(BOOL)lowQuality includedWindows:(NSArray<UIWindow *> *)includedWindows excludedWindows:(NSArray<UIWindow *> *)excludedWindows {
     [[LKS_TraceManager sharedInstance] reload];
     
-    NSArray<UIWindow *> *windows = [[UIApplication sharedApplication].windows copy];
+    NSArray<UIWindow *> *windows = [UIApplication lks_windows].copy;
     NSMutableArray *resultArray = [NSMutableArray arrayWithCapacity:windows.count];
     [windows enumerateObjectsUsingBlock:^(__kindof UIWindow * _Nonnull window, NSUInteger idx, BOOL * _Nonnull stop) {
         if (includedWindows.count) {

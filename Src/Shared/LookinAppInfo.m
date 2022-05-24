@@ -9,6 +9,7 @@
 
 
 #import "LookinAppInfo.h"
+#import "UIApplication+Lookin.h"
 
 static NSString * const CodingKey_AppIcon = @"1";
 static NSString * const CodingKey_Screenshot = @"2";
@@ -188,7 +189,7 @@ static NSString * const CodingKey_DeviceType = @"8";
 }
 
 + (UIImage *)screenshotImage {
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIWindow *window = [UIApplication lks_sharedApplication].keyWindow;
     if (!window) {
         return nil;
     }

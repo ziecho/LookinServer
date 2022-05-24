@@ -15,7 +15,7 @@
 #import "LKS_PerspectiveHierarchyView.h"
 #import "LKS_PerspectiveToolbarButtons.h"
 #import "LKS_PerspectiveItemLayer.h"
-
+#import "UIApplication+Lookin.h"
 #import "LookinServerDefines.h"
 
 typedef NS_ENUM(NSUInteger, LKS_PerspectiveLayout) {
@@ -405,7 +405,7 @@ typedef NS_ENUM(NSUInteger, LKS_PerspectiveLayout) {
 #if TARGET_OS_TV
     BOOL isLandScape = YES;
 #else
-    BOOL isLandScape = UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]);
+    BOOL isLandScape = UIInterfaceOrientationIsLandscape([[UIApplication lks_sharedApplication] statusBarOrientation]);
 #endif
     if (isLandScape) {
         self.layoutType = LKS_PerspectiveLayoutHorizontal;

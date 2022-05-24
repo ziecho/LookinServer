@@ -7,9 +7,7 @@
 //
 
 #import "LookinMsgAttribute.h"
-
-
-
+#import "UIApplication+Lookin.h"
 #import "LookinMsgTargetAction.h"
 
 @implementation LookinMsgActionParams
@@ -94,7 +92,7 @@
         params.value = value;
         params.relatedObject = obj.relatedObject;
 #if TARGET_OS_IPHONE
-        [[UIApplication sharedApplication] sendAction:subscriberAction to:subscriberTarget from:params forEvent:nil];
+        [[UIApplication lks_sharedApplication] sendAction:subscriberAction to:subscriberTarget from:params forEvent:nil];
 #elif TARGET_OS_MAC
         [NSApp sendAction:subscriberAction to:subscriberTarget from:params];
 #endif
@@ -127,7 +125,7 @@
         params.value = self.currentValue;
         params.relatedObject = relatedObject;
 #if TARGET_OS_IPHONE
-        [[UIApplication sharedApplication] sendAction:action to:target from:params forEvent:nil];
+        [[UIApplication lks_sharedApplication] sendAction:action to:target from:params forEvent:nil];
 #elif TARGET_OS_MAC
         [NSApp sendAction:action to:target from:params];
 #endif
