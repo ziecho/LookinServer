@@ -72,6 +72,19 @@
 }
 
 - (NSData *)lookin_data {
+    static BOOL isExtension = NO;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        isExtension = [[[NSBundle mainBundle].bundleURL pathExtension] isEqualToString:@"appex"];
+    });
+    if (isExtension) {
+        NSUInteger targetSize = self.size.width * self.size.height;
+        // 键盘
+        if (targetSize > 10000) {
+            return nil;
+        }
+        // NSLog(@"targetSize = %zd", targetSize);
+    }
     return UIImagePNGRepresentation(self);
 }
 
